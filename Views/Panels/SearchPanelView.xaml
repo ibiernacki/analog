@@ -1,0 +1,108 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Views.Panels"
+             xmlns:panels="clr-namespace:ViewModels.Panels;assembly=ViewModels"
+             xmlns:cc="clr-namespace:Views.CustomControls"
+             xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:viewModels="clr-namespace:ViewModels;assembly=ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls" 
+             x:Class="Views.Panels.SearchPanelView"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=panels:SearchPanelViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ItemsControl   HorizontalContentAlignment="Stretch" ItemsSource="{Binding Criterions}">
+            <ItemsControl.ItemTemplate>
+
+                <DataTemplate DataType="{x:Type panels:SearchCriterionViewModel}">
+                    <materialDesign:Card Padding="8 5" Margin="3 1" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <cc:EzGrid  Columns="Auto,*,Auto,Auto" materialDesign:RippleAssist.IsDisabled="True">
+                            <materialDesign:PopupBox Grid.Column="0"  Padding="2 1" x:Name="ColorPopup" >
+                                <materialDesign:PopupBox.ToggleContent>
+                                    <Border CornerRadius="1" Width="16" Height="16">
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="{Binding Color}" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Color}" Value="{x:Null}">
+                                                        <Setter Property="Background" Value="Black" />
+                                                        <Setter Property="Opacity" Value="0.1" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                    </Border>
+                                </materialDesign:PopupBox.ToggleContent>
+                                <StackPanel Orientation="Vertical">
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid Columns="4" IsItemsHost="True" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type materialDesignColors:Hue}">
+                                                <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                                                    Padding="0" Margin="3 0"  
+                                                                    cal:Bind.ModelWithoutContext="{Binding DataContext, ElementName=ColorPopup}"  
+                                                                    cal:Message.Attach="SetColor($this)" >
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="MouseDoubleClick">
+                                                            <cal:ActionMessage MethodName="Apply" >
+                                                                <cal:Parameter Value="{Binding SelectedItem, ElementName=LibraryListBox}" />
+                                                            </cal:ActionMessage>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                    <Border CornerRadius="1" Width="12" Height="12">
+                                                        <Border.Background>
+                                                            <SolidColorBrush Color="{Binding Color}" />
+                                                        </Border.Background>
+                                                    </Border>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" HorizontalAlignment="Center" Padding="0" Margin="3 0"  cal:Bind.ModelWithoutContext="{Binding DataContext, ElementName=ColorPopup}"  cal:Message.Attach="SetColor(null)" >
+                                        <Border CornerRadius="1"  Width="12" Height="12" BorderBrush="Black" Background="Transparent" BorderThickness="1" />
+                                    </Button>
+
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                            <TextBox 
+                                    VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    Margin="5 0 0 0"
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" 
+                                    cal:Message.Attach="[Gesture Enter] = [Action Apply($dataContext)];[Event LostFocus] = [Action Apply($dataContext)];[Gesture Escape] = [Action Delete($dataContext)]"
+                                    Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=333}"
+                                    materialDesign:HintAssist.Hint="Input text..."
+                                    mahApps:TextBoxHelper.IsMonitoring="True"
+                                    mahApps:TextBoxHelper.SelectAllOnFocus="True" />
+                            <!--<Button Grid.Column="2" Style="{DynamicResource MaterialDesignFlatButton}" Padding="6 4" >
+                                <materialDesign:PackIcon Kind="ArrowLeft" />
+                            </Button>
+                            <Button Grid.Column="3" Style="{DynamicResource MaterialDesignFlatButton}" Padding="6 4" >
+                                <materialDesign:PackIcon Kind="ArrowRight" />
+                            </Button>-->
+
+                        </cc:EzGrid>
+                    </materialDesign:Card>
+                 
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+    </Grid>
+</UserControl>

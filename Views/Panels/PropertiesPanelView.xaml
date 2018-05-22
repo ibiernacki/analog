@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Views.Panels.PropertiesPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views"
+             xmlns:panels="clr-namespace:ViewModels.Panels;assembly=ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=panels:PropertiesPanelViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <DataGrid  HeadersVisibility="None" AutoGenerateColumns="False" ItemsSource="{Binding RuleProperties}">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Style.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="IsReadOnly" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="IsEditing" Value="True" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True"  Binding="{Binding Name}" />
+                <DataGridTemplateColumn Width="*" CellTemplate="{DynamicResource PropertyHeaderTemplate}" CellEditingTemplate="{DynamicResource PropertyEditorTemplate}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

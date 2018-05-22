@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB463E1C-B482-46DA-B0C2-562B8B93E383}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewModels</RootNamespace>
+    <AssemblyName>ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.1.0\lib\net45\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.1.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.1.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.1.1.0\lib\net45\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.1\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=2.10.21623.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.10.0\lib\net40\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.PlatformServices.3.1.1\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.1.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ConfigurationData.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Configuration\IConfigurationProvider.cs" />
+    <Compile Include="Configuration\SettingsConfigurationProvider.cs" />
+    <Compile Include="DialogBaseViewModel.cs" />
+    <Compile Include="DropTargets\ArchiveDropHandler.cs" />
+    <Compile Include="DropTargets\DropService.cs" />
+    <Compile Include="DropTargets\MultiLogFileDropHandler.cs" />
+    <Compile Include="DropTargets\SingleDirectoryDropHandler.cs" />
+    <Compile Include="DropTargets\IDropHandler.cs" />
+    <Compile Include="DropTargets\ArchiveFromHttpDropHandler.cs" />
+    <Compile Include="Editors\BooleanEditor.cs" />
+    <Compile Include="Editors\DateTimeEditor.cs" />
+    <Compile Include="Editors\EditorBase.cs" />
+    <Compile Include="Editors\EditorFactory.cs" />
+    <Compile Include="Editors\EditorPropertyInfo.cs" />
+    <Compile Include="Editors\EnumEditor.cs" />
+    <Compile Include="Editors\ExposeAttribute.cs" />
+    <Compile Include="Editors\IEditor.cs" />
+    <Compile Include="Editors\IEditorFactory.cs" />
+    <Compile Include="Editors\IntegerEditor.cs" />
+    <Compile Include="Editors\StringEditor.cs" />
+    <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\TimeExtensions.cs" />
+    <Compile Include="IDialog.cs" />
+    <Compile Include="Modules\ContextItemType.cs" />
+    <Compile Include="Modules\EditorContextMenuItem.cs" />
+    <Compile Include="Modules\EditorContextMenuSeparator.cs" />
+    <Compile Include="Modules\IReactiveCollection.cs" />
+    <Compile Include="Modules\IVisualTransformers.cs" />
+    <Compile Include="Modules\ReactiveCollection.cs" />
+    <Compile Include="Modules\VisualTransformers.cs" />
+    <Compile Include="Services\FilteringService.cs" />
+    <Compile Include="Modules\IEditorContextMenuItem.cs" />
+    <Compile Include="Services\IFilteringService.cs" />
+    <Compile Include="Modules\IRules.cs" />
+    <Compile Include="Modules\ILogLoader.cs" />
+    <Compile Include="Modules\ILogState.cs" />
+    <Compile Include="Modules\ILogSyntaxProvider.cs" />
+    <Compile Include="Modules\ILogVisualizer.cs" />
+    <Compile Include="Modules\Rules.cs" />
+    <Compile Include="Modules\LogLoader.cs" />
+    <Compile Include="Modules\LogStateViewModel.cs" />
+    <Compile Include="Modules\LogSyntaxProvider.cs" />
+    <Compile Include="Modules\LogVisualizerViewModel.cs" />
+    <Compile Include="Panels\RulesPanelViewModel.cs" />
+    <Compile Include="Panels\LibraryPanelViewModel.cs" />
+    <Compile Include="LineTransformers\ILogSyntax.cs" />
+    <Compile Include="LineTransformers\SearchTransformer.cs" />
+    <Compile Include="LoadRuleViewModel.cs" />
+    <Compile Include="PanelsViewModel.cs" />
+    <Compile Include="LineTransformers\AcwLineTransformer.cs" />
+    <Compile Include="LineTransformers\ILineTransformer.cs" />
+    <Compile Include="LineTransformers\PlainTextTransformer.cs" />
+    <Compile Include="Messages\LoadRuleMessage.cs" />
+    <Compile Include="Messages\SaveRuleMessage.cs" />
+    <Compile Include="Panels\IPanel.cs" />
+    <Compile Include="Panels\PanelBase.cs" />
+    <Compile Include="Panels\PropertiesPanelViewModel.cs" />
+    <Compile Include="Panels\SearchCriterionViewModel.cs" />
+    <Compile Include="Panels\SearchPanelViewModel.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\DateRuleViewModel.cs" />
+    <Compile Include="Rules\Helpers.cs" />
+    <Compile Include="Rules\RegexRuleViewModel.cs" />
+    <Compile Include="Rules\CompositeRuleViewModel.cs" />
+    <Compile Include="Rules\RuleInfoViewModel.cs" />
+    <Compile Include="Rules\RuleParentViewModelBase.cs" />
+    <Compile Include="Rules\RuleStatus.cs" />
+    <Compile Include="Rules\RuleViewModelBase.cs" />
+    <Compile Include="Rules\RuleViewModelFactory.cs" />
+    <Compile Include="Rules\TextRuleViewModel.cs" />
+    <Compile Include="SaveRuleViewModel.cs" />
+    <Compile Include="Services\DefaultFoldingService.cs" />
+    <Compile Include="Configuration\IConfigurationManager.cs" />
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\IRulesProvider.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Services\LiteDbMapper.cs" />
+    <Compile Include="Services\LiteDbRulesProvider.cs" />
+    <Compile Include="Services\LocalRulesProvider.cs" />
+    <Compile Include="ProgressDialogViewModel.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\Folding.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IFoldingService.cs" />
+    <Compile Include="Services\IRulesSerializer.cs" />
+    <Compile Include="Services\JsonRulesSerializer.cs" />
+    <Compile Include="Messages\SnackbarMessage.cs" />
+    <Compile Include="Services\SearchRule.cs" />
+    <Compile Include="Services\SearchType.cs" />
+    <Compile Include="Services\SnackbarService.cs" />
+    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="StatusBar\StatusBarViewModel.cs" />
+    <Compile Include="ViewModelModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{614D9FC6-6A25-4DC7-B865-69DBB4D84798}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

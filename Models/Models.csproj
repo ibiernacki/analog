@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{614D9FC6-6A25-4DC7-B865-69DBB4D84798}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="LogParsing\AcwLogProvider.cs" />
+    <Compile Include="CommonFileService.cs" />
+    <Compile Include="ILogFilterEngine.cs" />
+    <Compile Include="ILogProvider.cs" />
+    <Compile Include="ILogService.cs" />
+    <Compile Include="LogParsing\AcwNewFormatLineParser.cs" />
+    <Compile Include="LogParsing\ILogParser.cs" />
+    <Compile Include="LogService.cs" />
+    <Compile Include="Log\LogEntryThreadInfo.cs" />
+    <Compile Include="Log\LogLevel.cs" />
+    <Compile Include="Log\LogSource.cs" />
+    <Compile Include="Log\AnalogLog.cs" />
+    <Compile Include="Log\LogEntry.cs" />
+    <Compile Include="LogFilterEngine.cs" />
+    <Compile Include="LogicRulesEngine\AndRule.cs" />
+    <Compile Include="LogicRulesEngine\IEvaluable.cs" />
+    <Compile Include="LogicRulesEngine\LogicRule.cs" />
+    <Compile Include="LogicRulesEngine\NotRule.cs" />
+    <Compile Include="LogicRulesEngine\OrRule.cs" />
+    <Compile Include="LogResult.cs" />
+    <Compile Include="Extensions\LogExtensions.cs" />
+    <Compile Include="LogParsing\AcwLogParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ModelModule.cs" />
+    <Compile Include="Rules\CompositeRule.cs" />
+    <Compile Include="Rules\DateRule.cs" />
+    <Compile Include="Rules\DateRuleAction.cs" />
+    <Compile Include="Rules\IdRuleAction.cs" />
+    <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\RegexRule.cs" />
+    <Compile Include="Rules\RegexRuleAction.cs" />
+    <Compile Include="Rules\RuleBase.cs" />
+    <Compile Include="Rules\RuleGroupType.cs" />
+    <Compile Include="Rules\RuleInfo.cs" />
+    <Compile Include="Rules\TextRule.cs" />
+    <Compile Include="Rules\TextRuleAction.cs" />
+    <Compile Include="StreamInfo.cs" />
+    <Compile Include="VisualLogEntry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

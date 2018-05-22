@@ -1,0 +1,147 @@
+﻿<mahApps:MetroWindow x:Class="Views.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ae="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:b="clr-namespace:Views.Behaviors"
+        xmlns:mahAppsBehaviors="http://metro.mahapps.com/winfx/xaml/shared"
+        xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cc="clr-namespace:Views.CustomControls"
+        xmlns:dd="urn:gong-wpf-dragdrop"
+        xmlns:services="clr-namespace:ViewModels.Services;assembly=ViewModels"
+        xmlns:properties="clr-namespace:Views.Properties"
+        xmlns:lt="clr-namespace:ViewModels.LineTransformers;assembly=ViewModels"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:rules="clr-namespace:ViewModels.Rules;assembly=ViewModels"
+        xmlns:converters="clr-namespace:Views.Converters"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:views="clr-namespace:Views"
+        xmlns:viewModels="clr-namespace:ViewModels.ViewModels;assembly=ViewModels"
+        mc:Ignorable="d"
+                     Icon="icon.png"
+        d:DataContext="{d:DesignInstance Type=viewModels:ShellViewModel, IsDesignTimeCreatable=False}"
+        Title="Analog" 
+        AllowDrop="True"
+        cal:Message.Attach="[Gesture Ctrl+O] = [OpenManyFiles];[Gesture Ctrl+R] = [Filter]"
+        ShowMinButton="False" ShowCloseButton="False" ShowMaxRestoreButton="False"
+        BorderThickness="1" 
+        ShowIconOnTitleBar="True"
+        Height="650" Width="1100" 
+        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+        NonActiveBorderBrush="{DynamicResource PrimaryHueMidBrush}" 
+        NonActiveWindowTitleBrush="{DynamicResource PrimaryHueMidBrush}"
+        WindowTitleBrush="{DynamicResource PrimaryHueMidBrush}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        Name="MainWindow"
+        TitlebarHeight="28">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cal:ActionMessage MethodName="Loaded" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <mahAppsBehaviors:BorderlessWindowBehavior />
+        <mahAppsBehaviors:WindowsSettingBehaviour />
+        <mahAppsBehaviors:GlowWindowBehavior />
+    </i:Interaction.Behaviors>
+
+    <mahApps:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Views;component/Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </mahApps:MetroWindow.Resources>
+    <mahApps:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <materialDesign:ColorZone Padding="16 0" Mode="PrimaryMid" />
+        </DataTemplate>
+    </mahApps:MetroWindow.TitleTemplate>
+
+    <mahApps:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <materialDesign:PackIcon Kind="Beer" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignDarkForeground}"  Width="20" Height="20" />
+        </DataTemplate>
+    </mahApps:MetroWindow.IconTemplate>
+
+    <mahApps:MetroWindow.LeftWindowCommands >
+        <mahApps:WindowCommands VerticalAlignment="Center" ShowSeparators="False">
+            <TextBlock Margin="8 0 0 0" Text="{Binding Title, ElementName=MainWindow}" />
+        </mahApps:WindowCommands>
+    </mahApps:MetroWindow.LeftWindowCommands>
+
+    <mahApps:MetroWindow.RightWindowCommands>
+        <mahApps:WindowCommands ShowSeparators="False">
+            <materialDesign:ColorZone Mode="PrimaryMid">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
+
+                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                materialDesign:RippleAssist.IsCentered="True"
+                            cal:Message.Attach="Minimize($view)"
+                            Margin="0 0 8 0" HorizontalAlignment="Left" ToolTip="Minimize"
+                         Background="#00673AB7">
+                        <materialDesign:PackIcon Kind="WindowMinimize" Height="15" Width="15"/>
+                    </Button>
+
+                    <Button  Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                materialDesign:RippleAssist.IsCentered="True" ToolTip="Maximize/Turn normal"
+                            Margin="0 0 8 0" HorizontalAlignment="Left" cal:Message.Attach="Maximize($view)"
+                        Background="#00673AB7">
+                        <materialDesign:PackIcon Kind="WindowMaximize" Height="15" Width="15" />
+                    </Button>
+
+                    <Button  Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                materialDesign:RippleAssist.IsCentered="True" ToolTip="Close"
+                             cal:Message.Attach="TryClose(null)"
+                            Margin="0 0 8 0" HorizontalAlignment="Left" 
+                        Background="#00673AB7">
+                        <materialDesign:PackIcon Kind="Close" Height="15" Width="15" />
+                    </Button>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </mahApps:WindowCommands>
+    </mahApps:MetroWindow.RightWindowCommands>
+
+    <materialDesign:DialogHost  SnackbarMessageQueue="{Binding Snackbar.Queue}"  >
+        <cc:EzGrid Rows="*,Auto,Auto">
+
+            <materialDesign:DrawerHost Grid.Row="0" >
+                <cc:EzGrid Rows="Auto,*" Columns="*,Auto">
+                    <Menu Grid.Row="0">
+                        <MenuItem Header="_File">
+                            <MenuItem Header="_Open" cal:Message.Attach="OpenManyFiles" InputGestureText="Ctrl+O"/>
+                            <MenuItem Header="_Close" />
+                            <MenuItem Header="_Save" />
+                        </MenuItem>
+                    </Menu>
+
+                    <ContentControl Grid.Row="1" 
+                                    cal:View.Model="{Binding LogState}"  
+                                    dd:DragDrop.IsDropTarget="True"  
+                                    dd:DragDrop.DropHandler="{Binding}"  />
+
+
+
+
+                    <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BorderThickness="1 0 0 0" BorderBrush="{DynamicResource PrimaryHueLightBrush}" >
+                        <ContentControl cal:View.ApplyConventions="True" cal:View.Model="{Binding Plugins}" />
+                    </Border>
+                </cc:EzGrid>
+
+            </materialDesign:DrawerHost>
+            <materialDesign:Snackbar Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" MessageQueue="{Binding Snackbar.Queue}" />
+            <!-- Bottom panel -->
+            <ContentControl Grid.Row="2" cal:View.Model="{Binding StatusBar}" />
+            <!--<materialDesign:ColorZone Grid.Row="2" Padding="8 4" Mode="PrimaryMid">
+                
+            </materialDesign:ColorZone>-->
+        </cc:EzGrid>
+    </materialDesign:DialogHost>
+
+</mahApps:MetroWindow>
