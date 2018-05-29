@@ -139,7 +139,7 @@ namespace ViewModels.Rules
             _model.Rules.Add(ruleViewModel.Rule);
         }
 
-        public void NegateRule()
+        public override void NegateRule()
         {
             SelectedType = SelectedType == RuleGroupType.And ? RuleGroupType.Or : RuleGroupType.And;
             _model.SelectedType = SelectedType;

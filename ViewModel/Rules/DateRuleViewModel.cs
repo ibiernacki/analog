@@ -48,5 +48,10 @@ namespace ViewModels.Rules
         {
             Name = $"{SelectedAction.GetDescription()} {Date}";
         }
+
+        public override void NegateRule()
+        {
+            SelectedAction = SelectedAction == DateRuleAction.After ? DateRuleAction.Before : DateRuleAction.After;
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace ViewModels.Rules
             }
         }
 
-        public void NegateRule()
+        public override void NegateRule()
         {
             SelectedAction = SelectedAction == RegexRuleAction.Matches
                 ? RegexRuleAction.DoesNotMatch

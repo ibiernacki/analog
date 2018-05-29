@@ -80,7 +80,7 @@ namespace ViewModels.Rules
         }
 
 
-        public void NegateRule()
+        public override void NegateRule()
         {
             SelectedAction = SelectedAction == TextRuleAction.Contains
                 ? TextRuleAction.DoesNotContain

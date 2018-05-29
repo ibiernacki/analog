@@ -78,6 +78,8 @@ namespace ViewModels.Rules
             IsFocused = true;
         }
 
+        public abstract void NegateRule();
+        
         public virtual void RevertIsEnabled()
         => IsEnabled = !IsEnabled;
 
