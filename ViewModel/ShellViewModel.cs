@@ -12,6 +12,8 @@ using ViewModels.DropTargets;
 using ViewModels.Modules;
 using ViewModels.Panels;
 using ViewModels.StatusBar;
+using Models.Settings;
+using ViewModels.Configuration;
 
 namespace ViewModels
 {
@@ -27,6 +29,7 @@ namespace ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly SnackbarService _snackbarService;
         private readonly IDialogService _dialogService;
+        private readonly IConfigurationManager _configurationManager;
         private readonly Func<SaveRuleMessage, SaveRuleViewModel> _saveRuleFactory;
         private readonly Func<LoadRuleMessage, LoadRuleViewModel> _loadRuleFactory;
         private readonly DropService _dropService;
@@ -44,6 +47,7 @@ namespace ViewModels
             IEventAggregator eventAggregator,
             SnackbarService snackbarService,
             IDialogService dialogService,
+            IConfigurationManager configurationManager,
             Func<SaveRuleMessage, SaveRuleViewModel> saveRuleFactory,
             Func<LoadRuleMessage, LoadRuleViewModel> loadRuleFactory,
             LibraryPanelViewModel libraryPanel,
@@ -57,6 +61,7 @@ namespace ViewModels
             _eventAggregator = eventAggregator;
             _snackbarService = snackbarService;
             _dialogService = dialogService;
+            _configurationManager = configurationManager;
             _saveRuleFactory = saveRuleFactory;
             _loadRuleFactory = loadRuleFactory;
             _dropService = dropService;
@@ -90,9 +95,36 @@ namespace ViewModels
 
             await LoadFiles(files);
         }
+
+        public Task UseAcwParser()
+        {
+            return UseParser(ParserType.Acw);
+        }
+
+        public Task UsePipeParser()
+        {
+            return UseParser(ParserType.PipeDelimetered);
+        }
+
+        private async Task UseParser(ParserType parserType)
+        {
+            await _configurationManager.Commit(cd =>
+            {
+                cd.ParserType = parserType;
+            });
+            DisplayParserType(parserType);
+        }
+
+        private void DisplayParserType(ParserType parserType)
+        {
+            UsesAcwParser = parserType == ParserType.Acw;
+            UsesPipeParser = parserType == ParserType.PipeDelimetered;
+        }
+
         public async Task Loaded()
         {
-
+            var config = await _configurationManager.Load();
+            DisplayParserType(config.ParserType);
             await LibraryPanel.Reload();
         }
 
@@ -151,6 +183,29 @@ namespace ViewModels
             set
             {
                 _logStatistics = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        private bool _usesAcwParser;
+
+        public bool UsesAcwParser
+        {
+            get => _usesAcwParser;
+            set
+            {
+                _usesAcwParser = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private bool _usesPipeParser;
+
+        public bool UsesPipeParser
+        {
+            get => _usesPipeParser; 
+            set
+            {
+                _usesPipeParser = value;
                 NotifyOfPropertyChange();
             }
         }

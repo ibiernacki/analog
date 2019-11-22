@@ -110,6 +110,7 @@
     <Compile Include="Configuration\ConfigurationData.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
+    <Compile Include="Configuration\ParserSettingsRepository.cs" />
     <Compile Include="Configuration\SettingsConfigurationProvider.cs" />
     <Compile Include="DialogBaseViewModel.cs" />
     <Compile Include="DropTargets\ArchiveDropHandler.cs" />

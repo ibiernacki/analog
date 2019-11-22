@@ -1,7 +1,7 @@
 using Autofac;
-using ICSharpCode.AvalonEdit.Rendering;
 using MaterialDesignThemes.Wpf;
 using Models;
+using Models.Settings;
 using ViewModels.Configuration;
 using ViewModels.DropTargets;
 using ViewModels.Editors;
@@ -45,6 +45,9 @@ namespace ViewModels
                 .As<ILogProvider>();
             builder.RegisterType<LogFilterEngine>()
                 .As<ILogFilterEngine>();
+
+            builder.RegisterType<ParserSettingsRepository>()
+                .As<ISettingsRepository>();
 
             builder.RegisterType<LiteDbRulesProvider>()
                 .As<IRulesProvider>();

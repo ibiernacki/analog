@@ -23,6 +23,7 @@ namespace ViewModels.Configuration
                 configData.SyntaxHighlighting = Properties.Settings.Default.SyntaxTransformer;
                 configData.FavoriteLibraryRules = Properties.Settings.Default.FavoriteLibraryRules;
                 configData.Fold = Properties.Settings.Default.Fold;
+                configData.ParserType = Properties.Settings.Default.ParserType;
 
                 return configData;
             });
@@ -34,6 +35,7 @@ namespace ViewModels.Configuration
             to.SyntaxHighlighting = from.SyntaxHighlighting;
             to.FavoriteLibraryRules = from.FavoriteLibraryRules;
             to.Fold = from.Fold;
+            to.ParserType = from.ParserType;
         }
 
         public Task Commit(ConfigurationData configurationData)
@@ -44,6 +46,7 @@ namespace ViewModels.Configuration
                 Properties.Settings.Default.SyntaxTransformer = configurationData.SyntaxHighlighting;
                 Properties.Settings.Default.FavoriteLibraryRules = configurationData.FavoriteLibraryRules;
                 Properties.Settings.Default.Fold = configurationData.Fold;
+                Properties.Settings.Default.ParserType = configurationData.ParserType;
                 Properties.Settings.Default.Save();
             });
         }

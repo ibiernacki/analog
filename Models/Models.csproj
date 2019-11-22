@@ -81,6 +81,9 @@
     <Compile Include="Rules\RuleInfo.cs" />
     <Compile Include="Rules\TextRule.cs" />
     <Compile Include="Rules\TextRuleAction.cs" />
+    <Compile Include="Settings\ISettingsRepository.cs" />
+    <Compile Include="Settings\ParserType.cs" />
+    <Compile Include="Settings\Settings.cs" />
     <Compile Include="StreamInfo.cs" />
     <Compile Include="VisualLogEntry.cs" />
   </ItemGroup>

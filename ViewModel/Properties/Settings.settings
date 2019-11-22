@@ -17,5 +17,8 @@
     <Setting Name="Fold" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ParserType" Type="Models.Settings.ParserType" Scope="User">
+      <Value Profile="(Default)">Acw</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
