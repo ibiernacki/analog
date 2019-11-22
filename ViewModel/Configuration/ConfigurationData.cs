@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.Rules;
+using Models.Settings;
 
 namespace ViewModels.Configuration
 {
@@ -16,5 +17,7 @@ namespace ViewModels.Configuration
         public StringCollection FavoriteLibraryRules { get; set; }
 
         public bool Fold { get; set; }
+
+        public ParserType ParserType { get; set; }
     }
 }

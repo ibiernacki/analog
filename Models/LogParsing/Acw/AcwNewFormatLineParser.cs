@@ -9,7 +9,7 @@ namespace Models.LogParsing
 {
     public class AcwNewFormatLineParser
     {
-        public LogEntry ParseLine(string line, LogSource logSource)
+        public LogEntry ParseLine(string line)
         {
             int currentIndex = 0;
             var logDateTime = ParseLogTime(line, currentIndex, ref currentIndex);
@@ -26,7 +26,7 @@ namespace Models.LogParsing
             var tags = ParseTags(line, currentIndex, ref currentIndex);
 
 
-            var logEntry = new LogEntry(logSource, logDateTime.Value, logLevel.Value, tags, threadInfo);
+            var logEntry = new LogEntry(logDateTime.Value, logLevel.Value, tags, threadInfo);
 
 
             var firstNonSpaceIndex = line.FirstNotOf(new[] {' '}, currentIndex);

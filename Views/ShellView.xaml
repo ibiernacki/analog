@@ -118,6 +118,20 @@
                             <MenuItem Header="_Close" />
                             <MenuItem Header="_Save" />
                         </MenuItem>
+                        <MenuItem Header="_Settings">
+                            <MenuItem Header="_Parser">
+                                <MenuItem
+                                    IsCheckable="True"
+                                    IsChecked="{Binding UsesAcwParser}" 
+                                    Header="_ACW" 
+                                    cal:Message.Attach="UseAcwParser"/>
+                                <MenuItem
+                                    IsCheckable="True"
+                                    IsChecked="{Binding UsesPipeParser}" 
+                                    Header="_Pipes" 
+                                    cal:Message.Attach="UsePipeParser"/>
+                            </MenuItem>
+                        </MenuItem>
                     </Menu>
 
                     <ContentControl Grid.Row="1" 
