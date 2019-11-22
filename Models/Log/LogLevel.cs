@@ -7,6 +7,7 @@
         Error,
         Info,
         Warning,
-        EnterExit
+        EnterExit,
+        Fatal
     }
 }

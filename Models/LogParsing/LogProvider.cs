@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Models.Extensions;
 using Models.Log;
 using Models.LogParsing;
+using Models.LogParsing.PipeDelimeteredLogParser;
 
 namespace Models
 {
 
-    public class AcwLogProvider : ILogProvider
+    public class LogProvider : ILogProvider
     {
-        private readonly AcwLogParser _logParser = new AcwLogParser(new AcwNewFormatLineParser());
+        //private readonly ILogParser _logParser = new AcwLogParser(new AcwNewFormatLineParser());
+        private readonly ILogParser _logParser = new LogParser();
         
         public async Task<AnalogLog> LoadAsync(IEnumerable<StreamInfo> streams)
         {

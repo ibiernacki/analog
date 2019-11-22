@@ -6,7 +6,7 @@ namespace Models
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AcwLogProvider>().SingleInstance();
+            builder.RegisterType<LogProvider>().SingleInstance();
         }
     }
 }

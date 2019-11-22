@@ -41,7 +41,7 @@ namespace ViewModels
             builder.RegisterType<RuleViewModelFactory>();
             builder.RegisterType<JsonRulesSerializer>()
                 .As<IRulesSerializer>();
-            builder.RegisterType<AcwLogProvider>()
+            builder.RegisterType<LogProvider>()
                 .As<ILogProvider>();
             builder.RegisterType<LogFilterEngine>()
                 .As<ILogFilterEngine>();
