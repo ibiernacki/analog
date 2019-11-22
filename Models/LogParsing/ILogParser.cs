@@ -7,6 +7,6 @@ namespace Models.LogParsing
 {
     public interface ILogParser
     {
-        Task<List<LogEntry>> ParseStream(Stream stream, LogSource file);
+        Task<List<LogEntry>> ParseStream(Stream stream);
     }
 }

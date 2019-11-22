@@ -26,14 +26,14 @@ namespace Models
             var logTasks = new List<Task<List<LogEntry>>>();
             foreach (var streamInfo in streams)
             {
-               var readLogTask =  _logParser.ParseStream(streamInfo.StreamReader, new LogSource(streamInfo.Name));
+               var readLogTask =  _logParser.ParseStream(streamInfo.StreamReader);
                 logTasks.Add(readLogTask);
             }
 
             await Task.WhenAll(logTasks);
 
-
-            var orderedEntries = await Task.Factory.StartNew(() => logTasks.SelectMany(t => t.Result).OrderBy(logEntry => logEntry.Time).ToArray());
+            var allEntries = await Task.WhenAll(logTasks);
+            var orderedEntries = await Task.Factory.StartNew(() => allEntries.SelectMany(o => o).OrderBy(logEntry => logEntry.Time).ToArray());
 
             var elapsed = stopwatch.Elapsed;
 

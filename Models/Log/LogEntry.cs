@@ -7,25 +7,21 @@ namespace Models.Log
 {
     public class LogEntry
     {
-        private readonly LogSource _logFile;
         private readonly StringBuilder _contentStringBuilder = new StringBuilder();
         private string _contentBeforeTags;
 
         public LogEntry(
-            LogSource logFile, 
             DateTime time, 
             LogLevel level, 
             IReadOnlyList<string> tags = null, 
             LogEntryThreadInfo threadInfo = null)
         {
-            _logFile = logFile;
             Time = time;
             LogLevel = level;
             Tags = tags;
             ThreadInfo = threadInfo;
         }
 
-        public LogSource LogFile => _logFile;
         public DateTime Time { get; }
         public LogLevel LogLevel { get; }
         public IEnumerable<string> Tags { get; }

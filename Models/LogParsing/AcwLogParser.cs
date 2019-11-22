@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.Extensions;
@@ -20,9 +18,9 @@ namespace Models.LogParsing
             _newFormatLineParser = newFormatLineParser;
         }
 
-        public async Task<List<LogEntry>> ParseStream(Stream stream, LogSource file)
+        public async Task<List<LogEntry>> ParseStream(Stream stream)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 LogEntry currentEntry = null;
                 var logEntries = new List<LogEntry>();
@@ -31,9 +29,9 @@ namespace Models.LogParsing
                     using (var reader = new StreamReader(bs, Encoding.Default))
                     {
                         string line = null;
-                        while ((line = reader.ReadLine()) != null)
+                        while ((line = await reader.ReadLineAsync()) != null)
                         {
-                            var entry = ParseLine(line, file);
+                            var entry = ParseLine(line);
                             if (entry != null)
                             {
                                 logEntries.Add(entry);
@@ -52,20 +50,20 @@ namespace Models.LogParsing
         }
 
 
-        public LogEntry ParseLine(string line, LogSource logFile)
+        public LogEntry ParseLine(string line)
         {
-            var logEntry = ParseCorrectLine(line, logFile);
+            var logEntry = ParseCorrectLine(line);
             if (logEntry == null)
             {
-                logEntry = ParseLineWithMissingLevelTag(line, logFile);
+                logEntry = ParseLineWithMissingLevelTag(line);
             }
             return logEntry;
         }
         
 
-        private LogEntry ParseCorrectLine(string line, LogSource logFile)
+        private LogEntry ParseCorrectLine(string line)
         {
-            var steveLine = _newFormatLineParser.ParseLine(line, logFile);
+            var steveLine = _newFormatLineParser.ParseLine(line);
             if (steveLine != null)
             {
                 return steveLine;
@@ -114,7 +112,7 @@ namespace Models.LogParsing
             var tags = ParseTags(content, out var lastTagIndex);
 
 
-            LogEntry logFileEntry = new LogEntry(logFile, entryTime, logLevel, tags);
+            LogEntry logFileEntry = new LogEntry(entryTime, logLevel, tags);
 
             if (lastTagIndex != -1)
             {
@@ -131,7 +129,7 @@ namespace Models.LogParsing
             return logFileEntry;
         }
 
-        private LogEntry ParseLineWithMissingLevelTag(string line, LogSource logFile)
+        private LogEntry ParseLineWithMissingLevelTag(string line)
         {
             string dateEndDelimiter = " ";
 
@@ -157,7 +155,7 @@ namespace Models.LogParsing
 
             var tags = ParseTags(content, out var lastTagIndex);
 
-            LogEntry logFileEntry = new LogEntry(logFile, entryTime, LogLevel.Unknown, tags);
+            LogEntry logFileEntry = new LogEntry(entryTime, LogLevel.Unknown, tags);
 
             if (lastTagIndex != -1)
             {
